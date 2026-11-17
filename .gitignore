@@ -1,0 +1,9 @@
+.DS_Store
+.env
+**/node_modules/
+**/vendor/
+**/dist/
+**/.env
+**/.phpunit.cache/
+**/.phpunit.result.cache
+**/storage/app/*.sqlite*

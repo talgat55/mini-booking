@@ -1,0 +1,26 @@
+services:
+  backend:
+    image: mini-booking_backend:latest
+    build: ./backend
+    environment:
+      PHP_CLI_SERVER_WORKERS: 4
+      APP_TIMEZONE: ${APP_TIMEZONE:-Asia/Omsk}
+    volumes:
+      - booking-data:/var/www/html/storage/app
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1:8000/up') === false ? 1 : 0);"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  frontend:
+    image: mini-booking_frontend:latest
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+volumes:
+  booking-data:
