@@ -1,10 +1,12 @@
-import { createApp } from 'vue';
-import PrimeVue from 'primevue/config';
-import Aura from '@primeuix/themes/aura';
-import App from './App.vue';
-import 'primeicons/primeicons.css';
-import './style.css';
+import { createApp } from "vue";
+import PrimeVue from "primevue/config";
+import Aura from "@primeuix/themes/aura";
+import App from "./App.vue";
+import "primeicons/primeicons.css";
+import "./style.css";
 
-createApp(App).use(PrimeVue, {
-  theme: { preset: Aura, options: { darkModeSelector: false } },
-}).mount('#app');
+createApp(App)
+  .use(PrimeVue, {
+    theme: { preset: Aura, options: { darkModeSelector: false } },
+  })
+  .mount("#app");

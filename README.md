@@ -7,13 +7,14 @@
 Нужен только Docker Desktop с Docker Compose. PHP, Composer, Node.js и npm устанавливаются **в контейнерах**.
 
 ```sh
-docker compose up --build -d
+./scripts/start.sh
 ```
 
 - Интерфейс: http://localhost:8080
 - JSON API: http://localhost:8000/api/slots (также доступен через http://localhost:8080/api/slots).
 - При первом старте backend автоматически создаёт `.env`, APP_KEY, SQLite, применяет миграции и запускает Seeder.
 - SQLite хранится в именованном volume `booking-data`; перезапуск и пересборка контейнеров сохраняют бронирования.
+- `scripts/start.sh` последовательно собирает оба образа и запускает Compose. Это также обходит ошибку DNS при параллельной сборке в старом Docker Compose 2.0. На актуальном Docker Desktop можно использовать `docker compose up --build -d`.
 - На старых версиях Docker используйте `docker-compose` вместо `docker compose`.
 
 ```sh
